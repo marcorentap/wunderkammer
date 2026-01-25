@@ -1,0 +1,1 @@
+import{j as e}from"./index-Bm4VKDUV.js";function s(){return e.jsxs("div",{className:"flex flex-col justify-center",children:[e.jsx("p",{className:"text-xl text-center mt-50",children:"Nothing here, dummy!"}),e.jsx("img",{src:"https://i.pinimg.com/originals/e9/6b/2a/e96b2ae4c3e9e55bf0a571ca43751cd5.gif"})]})}export{s as component};
