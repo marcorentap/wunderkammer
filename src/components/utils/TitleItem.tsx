@@ -3,7 +3,7 @@ import type React from "react"
 import { useRef, useState, useEffect } from "react";
 
 export type TitleProps = {
-    key: React.Key
+    key?: React.Key
     scrollRef: React.RefObject<HTMLElement | null>
     children: React.ReactNode
 }
