@@ -16,7 +16,7 @@ export default function ScalingText(props: ScalingDivProps) {
                     fontSize: props.hovered ? `calc(${props.fontSize}* ${props.scaleFactor})` : `${props.fontSize}`
                 }
             }
-            transition={{ duration: 2, ease: 'linear' }}
+            transition={{ duration: 0.5, ease: 'linear' }}
         >
             {props.children}
         </motion.p>
