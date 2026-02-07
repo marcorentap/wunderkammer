@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as NorgramRouteImport } from './routes/norgram'
 import { Route as DummyRouteImport } from './routes/dummy'
 import { Route as IndexRouteImport } from './routes/index'
 
+const NorgramRoute = NorgramRouteImport.update({
+  id: '/norgram',
+  path: '/norgram',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DummyRoute = DummyRouteImport.update({
   id: '/dummy',
   path: '/dummy',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dummy': typeof DummyRoute
+  '/norgram': typeof NorgramRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dummy': typeof DummyRoute
+  '/norgram': typeof NorgramRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dummy': typeof DummyRoute
+  '/norgram': typeof NorgramRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dummy'
+  fullPaths: '/' | '/dummy' | '/norgram'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dummy'
-  id: '__root__' | '/' | '/dummy'
+  to: '/' | '/dummy' | '/norgram'
+  id: '__root__' | '/' | '/dummy' | '/norgram'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DummyRoute: typeof DummyRoute
+  NorgramRoute: typeof NorgramRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/norgram': {
+      id: '/norgram'
+      path: '/norgram'
+      fullPath: '/norgram'
+      preLoaderRoute: typeof NorgramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dummy': {
       id: '/dummy'
       path: '/dummy'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DummyRoute: DummyRoute,
+  NorgramRoute: NorgramRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
