@@ -12,7 +12,6 @@ function RouteComponent() {
 
   useEffect(() => {
     const interval = setTimeout(() => {
-      console.log(progress.toFixed(2))
       if (progress < 1) {
         setProgress((prev) => prev + 0.01)
       } else {
