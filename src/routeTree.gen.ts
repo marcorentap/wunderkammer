@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as NorgramRouteImport } from './routes/norgram'
+import { Route as MusicDiscCardRouteImport } from './routes/music-disc-card'
 import { Route as DummyRouteImport } from './routes/dummy'
 import { Route as IndexRouteImport } from './routes/index'
 
 const NorgramRoute = NorgramRouteImport.update({
   id: '/norgram',
   path: '/norgram',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MusicDiscCardRoute = MusicDiscCardRouteImport.update({
+  id: '/music-disc-card',
+  path: '/music-disc-card',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DummyRoute = DummyRouteImport.update({
@@ -32,30 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dummy': typeof DummyRoute
+  '/music-disc-card': typeof MusicDiscCardRoute
   '/norgram': typeof NorgramRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dummy': typeof DummyRoute
+  '/music-disc-card': typeof MusicDiscCardRoute
   '/norgram': typeof NorgramRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dummy': typeof DummyRoute
+  '/music-disc-card': typeof MusicDiscCardRoute
   '/norgram': typeof NorgramRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dummy' | '/norgram'
+  fullPaths: '/' | '/dummy' | '/music-disc-card' | '/norgram'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dummy' | '/norgram'
-  id: '__root__' | '/' | '/dummy' | '/norgram'
+  to: '/' | '/dummy' | '/music-disc-card' | '/norgram'
+  id: '__root__' | '/' | '/dummy' | '/music-disc-card' | '/norgram'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DummyRoute: typeof DummyRoute
+  MusicDiscCardRoute: typeof MusicDiscCardRoute
   NorgramRoute: typeof NorgramRoute
 }
 
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/norgram'
       fullPath: '/norgram'
       preLoaderRoute: typeof NorgramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/music-disc-card': {
+      id: '/music-disc-card'
+      path: '/music-disc-card'
+      fullPath: '/music-disc-card'
+      preLoaderRoute: typeof MusicDiscCardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dummy': {
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DummyRoute: DummyRoute,
+  MusicDiscCardRoute: MusicDiscCardRoute,
   NorgramRoute: NorgramRoute,
 }
 export const routeTree = rootRouteImport
