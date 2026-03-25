@@ -6,6 +6,7 @@ export type MusicDiscCardProps = {
   artistName: string
   albumCoverUrl: string
   songDurationMs: number
+  progress: number
 }
 
 export function MusicDiscCard(props: MusicDiscCardProps) {
@@ -17,6 +18,7 @@ export function MusicDiscCard(props: MusicDiscCardProps) {
         bg-cover bg-center rounded-full flex justify-center items-center
         border border-white
         w-[calc(100cqw+20rem)] h-[calc(100cqw+20rem)] absolute left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl
+        max-w-250 max-h-250
         md:h-120 md:w-120
         `}
         style={{ backgroundImage: `url(${props.albumCoverUrl})` }}
@@ -43,7 +45,10 @@ export function MusicDiscCard(props: MusicDiscCardProps) {
         {/* Progress Bar */}
         {/* Track */}
         <div className="h-2 bg-gray-500 w-[20rem] mx-auto mb-10 rounded-full">
-          <div className="h-2 bg-gray-800 w-[50%] rounded-full" />
+          <div
+            className="h-2 bg-gray-800 rounded-full"
+            style={{ width: `${props.progress * 100}%` }}
+          />
         </div>
 
         <p className="text-center text-xl text-gray-500">{props.artistName}</p>
