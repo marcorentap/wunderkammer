@@ -14,12 +14,12 @@ export function MusicDiscCard(props: MusicDiscCardProps) {
       {/* Disc */}
       <motion.div
         className={`
-        bg-[url('${props.albumCoverUrl}')] 
         bg-cover bg-center rounded-full flex justify-center items-center
         border border-white
         w-[calc(100cqw+20rem)] h-[calc(100cqw+20rem)] absolute left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl
         md:h-120 md:w-120
         `}
+        style={{ backgroundImage: `url(${props.albumCoverUrl})` }}
         animate={{
           rotate: props.playing ? 360 : 0,
           transition: {
